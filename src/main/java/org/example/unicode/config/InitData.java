@@ -6,7 +6,9 @@ import org.example.unicode.repositories.UnicodeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -16,7 +18,7 @@ public class InitData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Set<Unicode> unicodes = new HashSet<>();
+        List<Unicode> unicodes = new ArrayList<>();
 
         for (char c = Character.MIN_VALUE; true; c++) {
             if (Character.isDefined(c) && Character.isLetterOrDigit(c)) {

@@ -18,10 +18,11 @@ public class Unicode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "code_point", nullable = false)
     private Integer unicode;
-    @Column(name = "ch", nullable = false)
+
+    // Character er et reseveret ord. Blev nød til at omdøbe
+    @Column(name = "ch")
     private Character character;
-    @Column(name = "subscription", nullable = false)
+
     private String subscription;
 }

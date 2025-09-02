@@ -18,6 +18,7 @@ public class UnicodeController {
         var unicode = unicodeRepository.findByUnicode(id).orElse(null);
         if(unicode == null)
             return "No such unicode";
+
         return "unicode: " + unicode.getUnicode() + " char: " + unicode.getCharacter();
     }
 
