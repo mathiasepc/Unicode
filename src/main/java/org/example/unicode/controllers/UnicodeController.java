@@ -14,4 +14,9 @@ public class UnicodeController {
         char c = (char) id;
         return "unicode: " + id + " char: " + c;
     }
+
+    @GetMapping("{ch}/char")
+    public String charToUnicode(@PathVariable char ch){
+        return "char: " + ch + " unicode: " + String.format("\\u%04x", (int) ch);
+    }
 }
