@@ -20,7 +20,7 @@ public class InitData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         List<Unicode> unicodes = new ArrayList<>();
 
-        for (char c = Character.MIN_VALUE; true; c++) {
+        for (char c = Character.MIN_VALUE; c <= Character.MAX_VALUE; c++) {
             if (Character.isDefined(c) && Character.isLetterOrDigit(c)) {
                 Unicode unicode = new Unicode();
                 unicode.setCharacter(c);
