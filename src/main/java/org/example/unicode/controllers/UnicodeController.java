@@ -1,22 +1,32 @@
 package org.example.unicode.controllers;
 
+import lombok.AllArgsConstructor;
+import org.example.unicode.repositories.UnicodeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/unicode")
 public class UnicodeController {
+    private final UnicodeRepository unicodeRepository;
 
     @GetMapping("{id}")
     public String unicodeToChar(@PathVariable int id){
-        char c = (char) id;
-        return "unicode: " + id + " char: " + c;
+        var unicode = unicodeRepository.findByUnicode(id).orElse(null);
+        if(unicode == null)
+            return "No such unicode";
+        return "unicode: " + unicode.getUnicode() + " char: " + unicode.getCharacter();
     }
 
     @GetMapping("{ch}/char")
     public String charToUnicode(@PathVariable char ch){
-        return "char: " + ch + " unicode: " + String.format("\\u%04x", (int) ch);
+        var unicode = unicodeRepository.findByCharacter(ch).orElse(null);
+        if(unicode == null)
+            return "No such char";
+
+        return "char: " + unicode.getCharacter() + " unicode: " + unicode.getUnicode();
     }
 }
